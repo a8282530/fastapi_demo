@@ -1,0 +1,9 @@
+ports:
+  - port: 1080
+    onOpen: open-preview
+    description: fastapi App preview
+
+# This will make it so that on workspace start it will run a file called `app.py`
+tasks:
+  - init: pip install -r requirements.txt
+  - command: python app.py
