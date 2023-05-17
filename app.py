@@ -10,9 +10,9 @@ client = docker.from_env()
 
 
 app = FastAPI(
-    title='ocr',
+    title='docker',
     version='1.0.0',
-    description='ocr api',
+    description='docker api',
     debug=True
 )
 
@@ -42,14 +42,15 @@ def query_ip():
         return 'timeout'
 
 def tasks():
+    ip = query_ip()
     for i in client.containers.list():
         print(i.stop())
         print(i.remove())
-    l = '-----'.join([str(i) for i in client.images.list()])
-    if not "traffmonetizer/cli:latest" in l:
-        client.images.pull('traffmonetizer/cli:latest')
+#     l = '-----'.join([str(i) for i in client.images.list()])
+#     if not "traffmonetizer/cli:latest" in l:
+#         client.images.pull('traffmonetizer/cli:latest')
     # res = client.containers.run("traffmonetizer/cli", "start accept --token jniTVESOzawsUvbUbprTL++Flag1g+CWwryIpJgGIK8= --device-name docker-1")
-    ip = query_ip()
+
     res = client.containers.run(
         image="traffmonetizer/cli:latest", 
         command=f"-d --name tm start accept --token jniTVESOzawsUvbUbprTL++Flag1g+CWwryIpJgGIK8= --device-name {ip}",
