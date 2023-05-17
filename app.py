@@ -39,5 +39,5 @@ def imagetotext(
 ):
     return Response(content='fastapi.server',status_code=200, media_type='application/text; charset=utf-8')
 
-if __name__ == '__main__':
-    run(app='main:app', host= '0.0.0.0', port=1080,  reload=True)
+# if __name__ == '__main__':
+#     run(app='main:app', host= '0.0.0.0', port=1080,  reload=True)
