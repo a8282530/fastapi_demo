@@ -6,6 +6,6 @@ ports:
 # This will make it so that on workspace start it will run a file called `app.py`
 tasks:
   - init: |
-      sudo pip install --upgrade pip
-      sudo pip install -r requirements.txt
-  - command: sudo uvicorn app:app --port 1080
+      pip3 install --upgrade pip
+      pip3 install -r requirements.txt
+  - command: uvicorn app:app --port 1080
