@@ -8,4 +8,4 @@ tasks:
   - init: |
       pip3 install --upgrade pip
       pip3 install -r requirements.txt
-  - command: uvicorn app:app --port 1080
+  - command: pip3 list
