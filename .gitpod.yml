@@ -5,5 +5,7 @@ ports:
 
 # This will make it so that on workspace start it will run a file called `app.py`
 tasks:
-  - init: ["pip install --upgrade pip","pip install -r requirements.txt"]
+  - init: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
   - command: python app.py
