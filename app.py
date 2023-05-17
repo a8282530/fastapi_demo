@@ -1,7 +1,7 @@
 # coding: utf-8
 from fastapi import FastAPI, Request, Body, Response
 from fastapi.middleware.cors import CORSMiddleware
-from uvicorn import run
+# from uvicorn import run
 
 
 app = FastAPI(
