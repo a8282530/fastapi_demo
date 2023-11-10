@@ -3,11 +3,6 @@ from fastapi import FastAPI, Request, Body, Response
 from fastapi.middleware.cors import CORSMiddleware
 from requests import get
 # from uvicorn import run
-import docker
-
-
-client = docker.from_env()
-
 
 app = FastAPI(
     title='docker',
@@ -41,33 +36,10 @@ def query_ip():
     except Exception:
         return 'timeout'
 
-def tasks():
-    ip = query_ip()
-    for i in client.containers.list():
-        print(i.stop())
-        print(i.remove())
-#     l = '-----'.join([str(i) for i in client.images.list()])
-#     if not "traffmonetizer/cli:latest" in l:
-#         client.images.pull('traffmonetizer/cli:latest')
-    # res = client.containers.run("traffmonetizer/cli", "start accept --token jniTVESOzawsUvbUbprTL++Flag1g+CWwryIpJgGIK8= --device-name docker-1")
-
-    res = client.containers.run(
-        image="traffmonetizer/cli:latest", 
-        command=f"-d --name tm start accept --token jniTVESOzawsUvbUbprTL++Flag1g+CWwryIpJgGIK8= --device-name {ip}",
-        # volumes=["somevolume:/insidecontainer"],
-        detach=True
-    )
-    return f'{str(res)}-{ip}'
-
 @app.get('/')
 def index():
     ip = query_ip()
     return {'ip': ip}
-
-@app.get('/dockers')
-def dockers():
-    result = tasks()
-    return Response(content=result,status_code=200, media_type='application/text; charset=utf-8')
 
 # if __name__ == '__main__':
 #     run(app='main:app', host= '0.0.0.0', port=1080,  reload=True)
