@@ -39,7 +39,7 @@ def query_ip():
 @app.get('/')
 def index():
     ip = query_ip()
-    return {'ip': ip}
+    return {'ip': ip,'status':'ok'}
 
 # if __name__ == '__main__':
 #     run(app='main:app', host= '0.0.0.0', port=1080,  reload=True)
